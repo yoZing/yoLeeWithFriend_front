@@ -1,14 +1,35 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+import { Routes, Route, BrowserRouter 
+} from "react-router-dom";
+import { Provider } from 'react-redux';
+import store from "./redux/config/configStore"; 
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+const HealthCheck = () => {
+  // 여기에 건강 검사 로직을 추가합니다.
+  return <div>Health Check OK</div>;
+};
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <>
+    <style>
+      {`
+      #root {
+        margin: 0%;
+      }
+      `}
+    </style>
+    <Provider store={store}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={ <App /> }></Route>
+        </Routes>
+      </BrowserRouter>
+    </Provider>
+  </>    
 );
 
 // If you want to start measuring performance in your app, pass a function
